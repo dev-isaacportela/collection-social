@@ -1,0 +1,65 @@
+@startuml
+!include estilo.iuml
+skinparam defaultFontSize 13
+skinparam nodesep 45
+skinparam ranksep 55
+
+package "Camada de Apresentação" as Apresentacao {
+  [Aplicação Web PWA] as Web
+}
+
+package "Camada de Aplicação" as Aplicacao {
+  [Server Actions e Rotas de API] as Acoes
+  [Processador de Tarefas] as Worker
+}
+
+package "Camada de Negócio" as Negocio {
+  [contas] as Contas
+  [perfis] as Perfis
+  [social] as Social
+  [moderacao] as Moderacao
+  [descoberta] as Descoberta
+  [trocas] as Trocas
+  interface "IAcervo" as IAcervo
+  interface "INotificacoes" as INotif
+  [acervo] as Acervo
+  [midia] as Midia
+  [notificacoes] as Notificacoes
+}
+
+package "Camada de Dados" as Dados {
+  [Repositórios Prisma] as Repos
+  [Fila Graphile Worker] as Fila
+  [Cliente de Armazenamento] as ClienteS3
+  database "PostgreSQL" as PG
+}
+
+cloud "Serviços Externos" {
+  [Armazenamento S3] as S3
+  [Servidor SMTP] as SMTP
+}
+
+Web ..> Acoes : HTTPS
+Acoes ..> Negocio : chama módulos
+Worker ..> Fila : consome tarefas
+Worker ..> Midia
+Worker ..> Notificacoes
+
+Social ..> IAcervo
+Descoberta ..> IAcervo
+Trocas ..> IAcervo
+IAcervo -down- Acervo
+
+Social ..> INotif
+Trocas ..> INotif
+Moderacao ..> INotif
+INotif -down- Notificacoes
+
+Acervo ..> Midia
+Negocio ..> Repos : persiste
+Repos ..> PG
+Fila ..> PG
+Midia ..> ClienteS3
+ClienteS3 ..> S3
+Notificacoes ..> SMTP
+@enduml

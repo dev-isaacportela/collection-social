@@ -1,0 +1,41 @@
+@startuml
+!include estilo.iuml
+skinparam defaultFontSize 13
+autonumber
+
+actor "Colecionador" as C
+boundary "Interface Web" as UI
+control "Servidor Next.js" as S
+entity "Armazenamento S3" as A
+database "PostgreSQL" as DB
+queue "Fila de Tarefas" as F
+control "Processador de Fotos" as P
+
+C -> UI : preencher dados e escolher fotos
+UI -> S : gerarUrlsDeEnvio(fotos)
+S -> S : validar quantidade, formato e tamanho (RN08)
+alt fotos inválidas
+  S --> UI : erro de validação
+  UI --> C : exibir mensagem de erro
+else fotos válidas
+  S --> UI : URLs assinadas
+  loop para cada foto
+    UI -> A : enviar foto original
+    A --> UI : envio confirmado
+  end
+  UI -> S : criarItem(dados, chaves das fotos)
+  S -> DB : gravar item e fotos em processamento
+  DB --> S : item gravado
+  S -> F : enfileirar processarFoto
+  S --> UI : item criado
+  UI --> C : exibir item em processamento
+  F -> P : processarFoto(foto)
+  activate P
+  P -> A : baixar original
+  P -> P : remover metadados de localização (RN09)
+  P -> P : gerar variantes de 320, 960 e 1920 pixels
+  P -> A : gravar variantes
+  P -> DB : marcar foto como pronta
+  deactivate P
+end
+@enduml

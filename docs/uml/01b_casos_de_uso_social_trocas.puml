@@ -1,0 +1,50 @@
+@startuml
+!include estilo.iuml
+left to right direction
+skinparam defaultFontSize 13
+
+actor "Colecionador" as Colecionador
+actor "Moderador" as Moderador
+actor "Serviço de Email" as Email <<sistema>>
+
+Colecionador <|-- Moderador
+
+rectangle "Collection Social" {
+  package "Social e Moderação" {
+    usecase "UC12 Seguir colecionador" as UC12
+    usecase "UC13 Visualizar feed" as UC13
+    usecase "UC14 Interagir com item" as UC14
+    usecase "UC15 Bloquear usuário" as UC15
+    usecase "UC16 Denunciar conteúdo" as UC16
+    usecase "UC17 Moderar denúncias" as UC17
+    usecase "UC24 Consultar notificações" as UC24
+  }
+  package "Trocas" {
+    usecase "UC09 Gerenciar itens" as UC09
+    usecase "UC18 Gerenciar lista de desejos" as UC18
+    usecase "UC19 Disponibilizar item para troca" as UC19
+    usecase "UC20 Propor troca" as UC20
+    usecase "UC21 Negociar proposta" as UC21
+    usecase "UC22 Concluir troca" as UC22
+    usecase "UC23 Avaliar troca" as UC23
+  }
+}
+
+Colecionador --> UC12
+Colecionador --> UC13
+Colecionador --> UC14
+Colecionador --> UC15
+Colecionador --> UC16
+Colecionador --> UC24
+Colecionador --> UC09
+Colecionador --> UC18
+Colecionador --> UC20
+Colecionador --> UC21
+Colecionador --> UC22
+Moderador --> UC17
+
+UC19 ..> UC09 : <<extend>>
+UC23 ..> UC22 : <<extend>>
+
+UC24 --> Email
+@enduml

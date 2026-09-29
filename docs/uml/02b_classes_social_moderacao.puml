@@ -1,0 +1,67 @@
+@startuml
+!include estilo.iuml
+hide empty members
+skinparam nodesep 50
+skinparam ranksep 70
+
+class Usuario {
+  UUID id
+  String nomeUsuario
+  SituacaoConta situacao
+}
+class Moderador
+class Item
+
+class Seguimento {
+  DateTime desde
+}
+
+class Bloqueio {
+  DateTime criadoEm
+}
+
+class Curtida {
+  DateTime criadaEm
+}
+
+class Comentario {
+  String texto
+  DateTime criadoEm
+  void excluir(Usuario solicitante)
+}
+
+class Notificacao {
+  String tipo
+  Boolean lida
+  void marcarComoLida()
+}
+
+class Denuncia {
+  String motivo
+  SituacaoDenuncia situacao
+  String justificativa
+  void arquivar()
+  void removerConteudo()
+}
+
+enum SituacaoDenuncia {
+  Pendente
+  Arquivada
+  ConteudoRemovido
+  AutorSuspenso
+}
+
+Usuario <|-- Moderador
+Usuario "1" -- "0..*" Seguimento : seguidor
+Seguimento "0..*" --> "1" Usuario : seguido
+Usuario "1" -- "0..*" Bloqueio : autor
+Bloqueio "0..*" --> "1" Usuario : bloqueado
+Usuario "1" *-- "0..*" Notificacao
+Usuario "1" -- "0..*" Curtida
+Curtida "0..*" --> "1" Item
+Usuario "1" -- "0..*" Comentario : escreve
+Item "1" *-- "0..*" Comentario
+Usuario "1" -- "0..*" Denuncia : registra
+Moderador "0..1" -- "0..*" Denuncia : decide
+Denuncia ..> SituacaoDenuncia
+@enduml

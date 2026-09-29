@@ -1,0 +1,69 @@
+@startuml
+!include estilo.iuml
+hide empty members
+skinparam nodesep 50
+skinparam ranksep 70
+
+class Usuario
+class Item
+class Categoria
+
+class Desejo {
+  String nome
+  String termos
+  Visibilidade visibilidade
+  Boolean corresponde(Item item)
+}
+
+class PropostaTroca {
+  UUID id
+  SituacaoProposta situacao
+  DateTime enviadaEm
+  void aceitar()
+  void recusar()
+  void contrapropor(List itens)
+  void confirmarRecebimento(Usuario parte)
+  void cancelar(String motivo)
+  void expirar()
+}
+
+class ItemProposta {
+  String parte
+}
+
+class MensagemProposta {
+  String texto
+  DateTime enviadaEm
+}
+
+class RegistroSituacao {
+  SituacaoProposta situacao
+  DateTime data
+}
+
+class Avaliacao {
+  Integer nota
+  String comentario
+}
+
+enum SituacaoProposta {
+  Pendente
+  Aceita
+  AguardandoConfirmacao
+  Concluida
+  Recusada
+  Expirada
+  Cancelada
+}
+
+Usuario "1" *-- "0..*" Desejo
+Desejo "0..*" --> "1" Categoria
+Usuario "1" -- "0..*" PropostaTroca : proponente
+Usuario "1" -- "0..*" PropostaTroca : destinatário
+PropostaTroca "1" *-- "2..*" ItemProposta
+ItemProposta "0..*" --> "1" Item
+PropostaTroca "1" *-- "0..*" MensagemProposta
+PropostaTroca "1" *-- "1..*" RegistroSituacao
+PropostaTroca "1" *-- "0..2" Avaliacao
+PropostaTroca ..> SituacaoProposta
+@enduml
