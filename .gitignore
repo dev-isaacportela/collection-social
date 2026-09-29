@@ -1,0 +1,5 @@
+ferramentas/.cache/
+__pycache__/
+node_modules/
+.env
+*.log
