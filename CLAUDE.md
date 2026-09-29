@@ -17,4 +17,5 @@ Este projeto segue Spec Driven Development. Antes de qualquer mudança, leia
 * Documentação e textos da interface em português do Brasil.
 * Nunca use hífen, travessão ou dois pontos em texto (Markdown, interface, diagramas, documento). Use `_` em nomes de arquivos e pastas. Rode `python3 ferramentas/verificar_texto.py` antes de commitar.
 * Novas features copiam os modelos de `.specify/templates/` para `specs/NNN_nome/`.
+* Diagramas UML são feitos no formato do draw.io (`docs/uml/*.drawio`), gerados por `ferramentas/gerar_diagramas.py` com as formas UML padrão da ferramenta.
 * Ao final das specs, atualize `docs/rastreabilidade.md`, os diagramas em `docs/uml/` e gere o documento ABNT com `ferramentas/gerar_documento.py`.

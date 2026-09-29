@@ -33,7 +33,7 @@ docs/
   visao_do_produto.md          visão, personas e roadmap
   arquitetura.md               stack e arquitetura do sistema
   rastreabilidade.md           matriz RF, RN, casos de uso e diagramas
-  uml/                         fontes PlantUML e imagens dos diagramas
+  uml/                         diagramas em formato draw.io (.drawio) e imagens PNG
   entrega/                     documento ABNT em DOCX e PDF
 specs/
   001_perfis_e_colecoes/
@@ -51,6 +51,8 @@ ferramentas/                   scripts de geração e verificação
 * [004 Listas e Trocas](specs/004_listas_e_trocas/spec.md). Spec pronta.
 
 ## Documento acadêmico
+
+Os diagramas UML ficam em `docs/uml/` no formato nativo do draw.io. Cada arquivo `.drawio` pode ser aberto e editado no draw.io ou no diagrams.net. O script `ferramentas/gerar_diagramas.py` gera os arquivos e exporta as imagens PNG com o próprio renderizador do draw.io. Se editar um diagrama direto no draw.io, exporte o PNG com o mesmo nome e não rode o gerador de diagramas, que sobrescreveria a edição.
 
 O documento de negócios, requisitos e modelagem UML fica em `docs/entrega/`. Para gerar novamente
 

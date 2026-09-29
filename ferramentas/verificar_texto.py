@@ -1,10 +1,11 @@
 """Verifica que nenhum texto do projeto usa hifen, travessao ou dois pontos.
 
-Confere arquivos Markdown, nomes de arquivos e pastas e o texto do documento
-DOCX gerado. Codigo (py, puml, js) fica de fora porque sua sintaxe exige esses
+Confere arquivos Markdown, nomes de arquivos e pastas, rotulos dos diagramas
+draw.io e o texto do documento DOCX gerado. Codigo (py, puml, js) fica de fora porque sua sintaxe exige esses
 caracteres, conforme o principio VIII da constituicao.
 """
 
+import re
 import sys
 import zipfile
 from pathlib import Path
@@ -37,6 +38,12 @@ def texto_docx(caminho):
         return "\n".join(linhas)
 
 
+def texto_drawio(caminho):
+    raiz = ElementTree.fromstring(caminho.read_text(encoding="utf8"))
+    valores = (c.get("value") or "" for c in raiz.iter("mxCell"))
+    return "\n".join(re.sub(r"<[^>]+>", " ", v) for v in valores if v)
+
+
 def main():
     erros = 0
     for caminho in sorted(RAIZ.rglob("*")):
@@ -52,6 +59,8 @@ def main():
             conteudo = caminho.read_text(encoding="utf8")
         elif caminho.is_file() and caminho.suffix == ".docx":
             conteudo = texto_docx(caminho)
+        elif caminho.is_file() and caminho.suffix == ".drawio":
+            conteudo = texto_drawio(caminho)
         else:
             continue
         for numero, linha, achados in problemas_em(conteudo):

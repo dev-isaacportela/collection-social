@@ -68,6 +68,8 @@ O quadro a seguir relaciona cada caso de uso aos requisitos funcionais e às reg
 
 # DIAGRAMAS UML
 
+Todos os diagramas desta seção foram elaborados no draw.io, com as formas da biblioteca UML da própria ferramenta. Os arquivos editáveis de cada diagrama acompanham o projeto, na pasta de modelagem, e podem ser abertos e alterados diretamente no draw.io.
+
 ## Diagrama de Casos de Uso
 
 ### Resumo
@@ -206,7 +208,7 @@ No Collection Social, o diagrama de objetos retrata uma troca aceita entre dois 
 
 ### Desenho/Imagem do Diagrama
 
-![Diagrama de objetos de uma troca aceita](../uml/07_objetos_troca.png)
+![Diagrama de objetos de uma troca aceita](../uml/07_objetos_troca.png){paisagem}
 
 Na Figura 10, ana ofereceu o patacão de 960 réis de 1815 da coleção Moedas do Império em troca da moeda de 1000 réis de 1851 da coleção Brasil Colônia, de bruno. As duas coleções são públicas e os dois itens estão disponíveis para troca, o que atende às regras RN24 e RN25. A proposta42 está Aceita e liga dois objetos ItemProposta, um de cada parte, o que confirma a multiplicidade de pelo menos dois itens por proposta definida no diagrama de classes.
 

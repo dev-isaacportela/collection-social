@@ -102,10 +102,10 @@ Arquivo gerado por `ferramentas/gerar_documento.py` a partir das specs e de `doc
 
 ## Diagramas
 
-* Casos de uso. `docs/uml/01a_casos_de_uso_contas_acervo.puml` e `docs/uml/01b_casos_de_uso_social_trocas.puml`.
-* Classes. `docs/uml/02a_classes_contas_acervo.puml`, `docs/uml/02b_classes_social_moderacao.puml` e `docs/uml/02c_classes_trocas.puml`.
-* Atividades. `docs/uml/03_atividades_troca.puml`, processo de UC20 a UC23, regras RN25 a RN30.
-* Sequência. `docs/uml/04_sequencia_cadastrar_item.puml`, cenário do UC09, regras RN08 e RN09.
-* Estados. `docs/uml/05_estados_proposta.puml`, proposta de troca, regras RN26 a RN29.
-* Componentes. `docs/uml/06_componentes.puml`, arquitetura de `docs/arquitetura.md`.
-* Objetos. `docs/uml/07_objetos_troca.puml`, cenário do UC21, regras RN24 e RN25.
+* Casos de uso. `docs/uml/01a_casos_de_uso_contas_acervo.drawio` e `docs/uml/01b_casos_de_uso_social_trocas.drawio`.
+* Classes. `docs/uml/02a_classes_contas_acervo.drawio`, `docs/uml/02b_classes_social_moderacao.drawio` e `docs/uml/02c_classes_trocas.drawio`.
+* Atividades. `docs/uml/03_atividades_troca.drawio`, processo de UC20 a UC23, regras RN25 a RN30.
+* Sequência. `docs/uml/04_sequencia_cadastrar_item.drawio`, cenário do UC09, regras RN08 e RN09.
+* Estados. `docs/uml/05_estados_proposta.drawio`, proposta de troca, regras RN26 a RN29.
+* Componentes. `docs/uml/06_componentes.drawio`, arquitetura de `docs/arquitetura.md`.
+* Objetos. `docs/uml/07_objetos_troca.drawio`, cenário do UC21, regras RN24 e RN25.

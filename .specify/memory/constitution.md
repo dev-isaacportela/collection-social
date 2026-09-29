@@ -39,7 +39,7 @@ Logs estruturados, tratamento explícito de erros, autenticação segura (hash f
 
 ## VIII. Texto sem hífen e sem dois pontos
 
-Specs, documentação, textos de interface, diagramas e o documento acadêmico não usam hífen, travessão nem dois pontos. Exceção única para sintaxe de código (arquivos de código e fontes PlantUML), que não é texto de leitura.
+Specs, documentação, textos de interface, diagramas e o documento acadêmico não usam hífen, travessão nem dois pontos. Exceção única para sintaxe de código (arquivos de código e a estrutura XML dos arquivos .drawio), que não é texto de leitura. Os rótulos dos diagramas seguem a regra.
 
 ## Governança
 
